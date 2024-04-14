@@ -10,9 +10,11 @@ from cityscapes.cityscapes_fast import CityscapesFast, \
     cityscapes_indices_segmentation_to_img, \
     cityscapes_only_categories_indices_segmentation_to_img
 
+from eda20k.eda20k_fast import EDA20KFast
+
 dataset_choices = {
     'cityscapes_coarse', 'cityscapes_fine',
-    'cityscapes_coarse_large', 'cityscapes_fine_large'}
+    'cityscapes_coarse_large', 'cityscapes_fine_large', 'eda20k'}
 
 
 def add_data_args(parser):
@@ -20,6 +22,7 @@ def add_data_args(parser):
     # Data params
     parser.add_argument('--dataset', type=str, default='cityscapes_coarse',
                         choices=dataset_choices)
+    parser.add_argument('--data_root', type=str)
 
     # Train params
     parser.add_argument('--batch_size', type=int, default=32)
@@ -94,6 +97,14 @@ def get_data(args):
         test = CityscapesFast(
             split='test', resolution=(128, 256), transform=pil_transforms,
             only_categories=False)
+        
+    elif args.dataset == 'eda20k':
+        data_shape = (1, 128, 128)
+        num_classes = 151
+        train = EDA20KFast(
+            split='train', root=args.data_root, resolution=(128, 128))
+        test = EDA20KFast(
+            split='val', root=args.data_root, resolution=(128, 128))
 
     else:
         raise ValueError

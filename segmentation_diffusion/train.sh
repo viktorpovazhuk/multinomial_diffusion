@@ -1,13 +1,13 @@
 python train.py \
     --device cpu \
-    --eval_every 3 \
+    --eval_every 4 \
     --check_every 2 \
-    --epochs 500 \
+    --epochs 3 \
     --log_home ./logs/ \
     --diffusion_steps 1000 \
-    --dataset cityscapes_fine \
+    --dataset eda20k \
+    --data_root "/home/viktor/PythonProjects/test_task_advasoft/data/ADE20K/ready" \
     --batch_size 4 \
     --dp_rate 0.1 \
-    --augmentation shift \
     --lr 0.0001 \
     --warmup 5
