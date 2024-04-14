@@ -15,16 +15,16 @@ def main(H, W):
         ToTensorNoNorm()])
 
     data_set = Cityscapes(
-            root='./', split='train', mode='fine', target_type='semantic',
+            root='./data_path/gtFine_trainvaltest/', split='train', mode='fine', target_type='semantic',
             transform=data_transforms, target_transform=None, transforms=None,
             only_categories=False)
     test_set = Cityscapes(
-        root='./', split='val', mode='fine', target_type='semantic',
+        root='./data_path/gtFine_trainvaltest/', split='val', mode='fine', target_type='semantic',
         transform=data_transforms, target_transform=None, transforms=None,
         only_categories=False)
 
-    train_set = torch.utils.data.Subset(data_set, torch.arange(0, 2500))
-    val_set = torch.utils.data.Subset(data_set, torch.arange(2500, 2975))
+    train_set = torch.utils.data.Subset(data_set, torch.arange(0, 15))
+    val_set = torch.utils.data.Subset(data_set, torch.arange(15, 20))
 
     n_train, n_val, n_test = len(train_set), len(val_set), len(test_set)
 
@@ -75,4 +75,4 @@ def main(H, W):
 
 if __name__ == '__main__':
     main(32, 64)
-    main(128, 256)
+    # main(128, 256)

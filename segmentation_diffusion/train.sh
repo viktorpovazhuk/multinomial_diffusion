@@ -1,0 +1,13 @@
+python train.py \
+    --device cpu \
+    --eval_every 3 \
+    --check_every 2 \
+    --epochs 500 \
+    --log_home ./logs/ \
+    --diffusion_steps 1000 \
+    --dataset cityscapes_fine \
+    --batch_size 4 \
+    --dp_rate 0.1 \
+    --augmentation shift \
+    --lr 0.0001 \
+    --warmup 5

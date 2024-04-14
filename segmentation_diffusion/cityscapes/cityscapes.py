@@ -166,7 +166,7 @@ class Cityscapes(VisionDataset):
                  only_categories=False):
         super(Cityscapes, self).__init__(root, transforms, transform, target_transform)
         self.mode = 'gtFine' if mode == 'fine' else 'gtCoarse'
-        self.images_dir = os.path.join(self.root, 'leftImg8bit', split)
+        self.images_dir = os.path.join(self.root, self.mode, split)
         self.targets_dir = os.path.join(self.root, self.mode, split)
         self.target_type = target_type
         self.split = split
