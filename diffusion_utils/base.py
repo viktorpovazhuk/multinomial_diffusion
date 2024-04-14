@@ -108,6 +108,12 @@ class BaseExperiment(object):
             f.write(str(metric_table))
 
     def checkpoint_save(self, name='checkpoint.pt'):
+        if self.current_epoch == 200:
+            name = 'checkpoint_200.pt'
+        elif self.current_epoch == 300:
+            name = 'checkpoint_300.pt'
+        elif self.current_epoch == 400:
+            name = 'checkpoint_400.pt'
         checkpoint = {'current_epoch': self.current_epoch,
                       'train_metrics': self.train_metrics,
                       'eval_metrics': self.eval_metrics,
